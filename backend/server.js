@@ -3,6 +3,7 @@ require('colors')
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -13,6 +14,7 @@ const errorHandler = require('./middlewares/errorMiddleware')
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(cookieParser())
 
 // Routes
 app.get('/', (req, res) => {
