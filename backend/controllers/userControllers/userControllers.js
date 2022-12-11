@@ -1,8 +1,8 @@
 const asyncHandler = require('express-async-handler')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const User = require('../models/User')
-const sendError = require('../utils/sendError')
+const User = require('../../models/User')
+const sendError = require('../../utils/sendError')
 
 const gererateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' })
@@ -35,9 +35,9 @@ const register = asyncHandler(async (req, res) => {
   res.cookie('token', token, {
     path: '/',
     expires: new Date(Date.now() + 1000 * 86400),
-    httpOnly: true,
-    sameSite: 'none',
-    secure: true,
+    // httpOnly: true,
+    // sameSite: 'none',
+    // secure: true,
   })
 
   if (user) {
@@ -63,7 +63,7 @@ const login = asyncHandler(async (req, res) => {
   }
   const user = await User.findOne({ email })
   if (!user) {
-    sendError(res, 400, 'Sorry, user doesn not exist')
+    sendError(res, 400, "Sorry, user doesn't not exist")
   }
   const validatedPassword = await bcrypt.compare(password, user.password)
   // Token and cookie
@@ -156,28 +156,7 @@ const updateProfile = asyncHandler(async (req, res) => {
   }
 })
 
-const updatePassword = asyncHandler(async (req, res) => {
-  const { oldPassword, newPassword } = req.body
-  const user = await User.findById(req.user._id)
-  if (!user) {
-    sendError(res, 404, 'User not found')
-  }
-  if (!oldPassword || !newPassword) {
-    sendError(res, 400, 'Please enter old and new password')
-  }
-  const isPasswordCorrect = await bcrypt.compare(oldPassword, user.password)
-  if (isPasswordCorrect && user) {
-    user.password = newPassword
-    await user.save()
-    res.status(200).json('Password changed')
-  } else {
-    sendError(res, 401, 'Password is incorrect')
-  }
-})
 
-const forgotPassword = asyncHandler(async (req, res) => {
-  res.send('Forgot Password')
-})
 
 module.exports = {
   register,
@@ -186,6 +165,4 @@ module.exports = {
   getUser,
   loginStatus,
   updateProfile,
-  updatePassword,
-  forgotPassword,
 }

@@ -7,9 +7,12 @@ const {
   getUser,
   loginStatus,
   updateProfile,
-  updatePassword,
+} = require('../controllers/userControllers/userControllers')
+const {
   forgotPassword,
-} = require('../controllers/userControllers')
+  updatePassword,
+  resetPassword,
+} = require('../controllers/userControllers/passwordController')
 const protect = require('../middlewares/authMiddleware')
 
 userRouter.post('/register', register)
@@ -22,5 +25,7 @@ userRouter.get('/loginStatus', loginStatus)
 
 userRouter.patch('/updateProfile', protect, updateProfile)
 userRouter.patch('/updatePassword', protect, updatePassword)
+
+userRouter.put('/resetPassword/:resetToken', resetPassword)
 
 module.exports = userRouter
