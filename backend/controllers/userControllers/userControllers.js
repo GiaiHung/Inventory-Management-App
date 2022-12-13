@@ -35,9 +35,9 @@ const register = asyncHandler(async (req, res) => {
   res.cookie('token', token, {
     path: '/',
     expires: new Date(Date.now() + 1000 * 86400),
-    // httpOnly: true,
-    // sameSite: 'none',
-    // secure: true,
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true,
   })
 
   if (user) {
@@ -71,9 +71,9 @@ const login = asyncHandler(async (req, res) => {
   res.cookie('token', token, {
     path: '/',
     expires: new Date(Date.now() + 1000 * 86400),
-    // httpOnly: true,
-    // sameSite: 'none',
-    // secure: true,
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true,
   })
   if (user && validatedPassword) {
     const { _id, name, email, phone, photo, bio } = user

@@ -19,7 +19,12 @@ app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(helmet())
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }))
-app.use(cors())
+app.use(
+  cors({
+    origin: ['http://127.0.0.1:5173', 'http://localhost:3000', 'https://pinvent-app.vercel.app'],
+    credentials: true,
+  })
+)
 
 // Routes
 app.get('/', (req, res) => {

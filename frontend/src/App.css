@@ -16,10 +16,18 @@ body {
 
 @layer components {
   .screen-center {
-    @apply min-h-[100vh] flex items-center justify-center;
+    @apply flex min-h-[100vh] items-center justify-center;
   }
 
   .loginInput {
-    @apply w-full bg-gray-100 border border-gray-500 rounded-lg px-6 py-3 outline-none placeholder:text-[gray] focus:bg-gray-200;
+    @apply w-full rounded-lg border border-gray-500 bg-gray-100 px-6 py-3 outline-none placeholder:text-[gray] focus:bg-gray-200;
+  }
+
+  .icon {
+    @apply cursor-pointer text-xl text-gray-500;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-center gap-x-4;
   }
 }

@@ -10,6 +10,7 @@ import Home from './pages/home/Home'
 import NotFound from './components/Helper/NotFound'
 import PrivateRoutes from './components/Helper/PrivateRoutes'
 import Register from './pages/auth/Register'
+import Layout from './components/Layout/Layout'
 
 function App() {
   const mode = useSelector((state) => state.theme.mode)
@@ -22,7 +23,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route element={<PrivateRoutes />}>
-          <Route path="/" element={<Home />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

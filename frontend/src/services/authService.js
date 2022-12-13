@@ -9,6 +9,24 @@ export const validateEmail = (email) => {
   )
 }
 
+const registerUser = async (data) => {
+  try {
+    const res = await axios.post(`${BACKEND_URL}/api/user/register`, data, {
+      withCredentials: true,
+    })
+    if (res.statusText === 'OK') {
+      toast.success('User registered successfully')
+    }
+    return res.data
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString()
+    toast.error(message)
+  }
+}
+
 const loginUser = async (data) => {
   try {
     const res = await axios.post(`${BACKEND_URL}/api/user/login`, data)
@@ -25,4 +43,4 @@ const loginUser = async (data) => {
   }
 }
 
-export { loginUser }
+export { registerUser, loginUser }
