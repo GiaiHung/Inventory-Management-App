@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif !important;
+}
+
+@layer components {
+  .screen-center {
+    @apply min-h-[100vh] flex items-center justify-center;
+  }
+
+  .loginInput {
+    @apply w-full bg-gray-100 border border-gray-500 rounded-lg px-6 py-3 outline-none placeholder:text-[gray] focus:bg-gray-200;
+  }
+}
