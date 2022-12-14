@@ -1,5 +1,5 @@
 // color design tokens export
-export const tokensDark = {
+const tokensDark = {
   grey: {
     0: '#ffffff', // manually adjusted
     10: '#f6f6f6', // manually adjusted
@@ -57,10 +57,10 @@ function reverseTokens(tokensDark) {
   })
   return reversedTokens
 }
-export const tokensLight = reverseTokens(tokensDark)
+const tokensLight = reverseTokens(tokensDark)
 
 // mui theme settings
-export const themeSettings = (mode) => {
+const themeSettings = (mode) => {
   return {
     palette: {
       mode: mode,
@@ -137,3 +137,5 @@ export const themeSettings = (mode) => {
     },
   }
 }
+
+export { tokensDark, tokensLight, themeSettings }

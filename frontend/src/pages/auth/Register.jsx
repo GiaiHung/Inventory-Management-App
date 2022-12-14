@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import Loading from '../../components/Helper/Loading'
 import { registerUser, validateEmail } from '../../services/authService'
+import { setLogin, setUser } from '../../store/authSlice'
 
 function Register() {
   const [loading, setLoading] = useState(false)
@@ -12,6 +14,9 @@ function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm()
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const onSubmit = async (data) => {
     const { email, password, repeatPassword } = data
@@ -28,7 +33,11 @@ function Register() {
     setLoading(true)
     try {
       const user = await registerUser(data)
-      console.log(user)
+      if (user) {
+        dispatch(setLogin(true))
+        dispatch(setUser(user))
+        navigate('/')
+      }
       setLoading(false)
     } catch (error) {
       toast.error(error.message)
