@@ -29,7 +29,9 @@ const registerUser = async (data) => {
 
 const loginUser = async (data) => {
   try {
-    const res = await axios.post(`${BACKEND_URL}/api/user/login`, data)
+    const res = await axios.post(`${BACKEND_URL}/api/user/login`, data, {
+      withCredentials: true
+    })
     if (res.statusText === 'OK') {
       toast.success('Login successfully')
     }
@@ -43,4 +45,22 @@ const loginUser = async (data) => {
   }
 }
 
-export { registerUser, loginUser, validateEmail }
+const updateUser = async (data) => {
+  try {
+    const res = await axios.patch(`${BACKEND_URL}/api/user/updateProfile`, data, {
+      withCredentials: true
+    })
+    if(res.statusText === 'OK') {
+      toast.success('User has been updated successfully')
+    }
+    return res.data
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString()
+    toast.error(message)
+  }
+}
+
+export { registerUser, loginUser, updateUser, validateEmail }

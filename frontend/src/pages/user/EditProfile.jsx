@@ -1,11 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { HiMail } from 'react-icons/hi'
 import { BsTelephoneFill } from 'react-icons/bs'
 import { MdLocationPin } from 'react-icons/md'
 import { AiOutlineUser } from 'react-icons/ai'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
+import { updateUser } from '../../services/authService'
+import Loading from '../../components/Helper/Loading'
+import { useNavigate } from 'react-router-dom'
+import { setUser } from '../../store/authSlice'
 
 function EditProfile() {
   const user = useSelector((state) => state.auth.user)
@@ -20,9 +24,11 @@ function EditProfile() {
   const [profileImage, setProfileImage] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const handleInputChange = (e) => {
     const { value, name } = e.target
-    console.log(value, name)
     setProfile({ ...profile, [name]: value })
   }
 
@@ -62,7 +68,11 @@ function EditProfile() {
         photo: profileImage ? imageURL : profile.photo,
       }
 
-      console.log(imageURL)
+      const userUpdated = await updateUser(formData)
+      if (userUpdated) {
+        dispatch(setUser(userUpdated))
+        navigate('/profile')
+      }
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -71,9 +81,9 @@ function EditProfile() {
   }
 
   return (
-    <div className="mx-auto mt-4 flex max-w-xl flex-col items-center justify-center px-4 md:px-0">
+    <div className="mx-auto mt-4 flex max-w-xl flex-col items-center justify-center px-4 pb-6 md:px-0">
       <img
-        src={profile.photo}
+        src={user?.photo}
         alt=""
         className="mx-auto h-[200px] w-[200px] rounded-full object-cover md:h-[300px] md:w-[300px]"
       />
@@ -100,6 +110,7 @@ function EditProfile() {
             className="rounded-md px-3 py-1 text-black outline-none"
             type="text"
             name="email"
+            disabled
             value={profile.email}
             onChange={handleInputChange}
           />
@@ -136,7 +147,12 @@ function EditProfile() {
           <input type="file" name="image" onChange={handleImageChange} />
         </div>
         <div className="flex w-full justify-center">
-          <button type='submit' className="rounded-lg bg-blue-500 px-3 py-1 text-lg font-semibold hover:bg-blue-600" onClick={saveProfile}>
+          <button
+            type="submit"
+            className="mx-auto flex w-1/2 items-center justify-center gap-x-2 rounded-lg bg-violet-500 py-2 text-2xl font-semibold text-white transition duration-150 ease-in hover:bg-violet-600"
+            onClick={saveProfile}
+          >
+            {loading && <Loading />}
             Update Profile
           </button>
         </div>

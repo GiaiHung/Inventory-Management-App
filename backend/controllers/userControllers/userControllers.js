@@ -136,17 +136,18 @@ const loginStatus = asyncHandler(async (req, res) => {
 const updateProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id)
 
+  // Make sure user can't change their profile's email
   if (user) {
     const { name, email, phone, photo, bio } = user
     user.name = req.body.name || name
-    user.email = req.body.email || email
+    user.email = email
     user.phone = req.body.phone || phone
     user.photo = req.body.photo || photo
     user.bio = req.body.bio || bio
     const updatedUser = await user.save()
     res.status(200).json({
       name: updatedUser.name,
-      email: updatedUser.email,
+      email,
       phone: updatedUser.phone,
       photo: updatedUser.photo,
       bio: updatedUser.bio,

@@ -13,6 +13,7 @@ import Register from './pages/auth/Register'
 import Layout from './components/Layout/Layout'
 import Profile from './pages/user/Profile'
 import EditProfile from './pages/user/EditProfile'
+import ChangePassword from './pages/auth/ChangePassword'
 
 function App() {
   const mode = useSelector((state) => state.theme.mode)
@@ -29,6 +30,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/editProfile" element={<EditProfile />} />
+            <Route path="/changePassword" element={<ChangePassword />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
