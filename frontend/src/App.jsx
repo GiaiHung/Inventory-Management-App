@@ -14,6 +14,8 @@ import Layout from './components/Layout/Layout'
 import Profile from './pages/user/Profile'
 import EditProfile from './pages/user/EditProfile'
 import ChangePassword from './pages/auth/ChangePassword'
+import ForgotPassword from './pages/auth/ForgotPassword'
+import ResetPassword from './pages/auth/ResetPasword'
 
 function App() {
   const mode = useSelector((state) => state.theme.mode)
@@ -25,6 +27,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgotPassword" element={<ForgotPassword />} />
+        <Route path="/resetpassword/:resetToken" element={<ResetPassword />} />
         <Route element={<PrivateRoutes />}>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />

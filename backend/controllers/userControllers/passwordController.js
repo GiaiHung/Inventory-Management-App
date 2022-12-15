@@ -54,6 +54,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
     <p>You have requested for a password reset</p>
     <p>Please use the link below to change your password</p>
     <p>The reset link is only valid for <u>30 minutes</u></p>
+    <p><i><strong>This email only for you. Please don't share it to anyone else</strong></i></p>
     <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
     <p>Regards!</p>
   `

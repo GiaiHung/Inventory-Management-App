@@ -25,7 +25,7 @@ function Login() {
     setLoading(true)
     try {
       const user = await loginUser(data)
-      if(user) {
+      if (user) {
         dispatch(setLogin(true))
         dispatch(setUser(user))
         navigate('/')
@@ -37,9 +37,9 @@ function Login() {
     }
   }
 
-  if(useSelector(state => state.auth.isLoggedIn)) {
-    return <Navigate to='/' />
-  } 
+  if (useSelector((state) => state.auth.isLoggedIn)) {
+    return <Navigate to="/" />
+  }
 
   return (
     <div className="screen-center">
@@ -62,7 +62,7 @@ function Login() {
               type="password"
               placeholder="Password"
               className="loginInput"
-              autoComplete=''
+              autoComplete=""
               {...register('password', { required: true })}
             />
             {errors.password && (
@@ -76,6 +76,9 @@ function Login() {
             {loading && <Loading />}
             Login
           </button>
+          <Link to="/forgotPassword">
+            <button className="text-violet-500 hover:underline">Forgot password</button>
+          </Link>
           <div className="flex gap-x-1 text-sm">
             <p>Don't have an account?</p>
             <Link to="/register">
