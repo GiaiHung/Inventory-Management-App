@@ -14,6 +14,15 @@ body {
   font-family: 'Inter', sans-serif !important;
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #919191;
+  border-radius: 10px;
+}
+
 @layer components {
   .screen-center {
     @apply flex min-h-[100vh] items-center justify-center;

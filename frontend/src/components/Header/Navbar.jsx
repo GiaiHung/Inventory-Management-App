@@ -20,7 +20,7 @@ import { setTheme } from '../../store/themeSlice'
 import { Link } from 'react-router-dom'
 import { setLogout } from '../../store/authSlice'
 
-function Navbar() {
+function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
   const theme = useTheme()
   const user = useSelector((state) => state.auth.user)
   const backgroundTheme = theme.palette.background.alt
@@ -48,12 +48,12 @@ function Navbar() {
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         {/* Left */}
         <div className="flex-between">
-          <FaBars className="icon" onClick={() => console.log('Open/Close sidebar')} />
+          <FaBars className="icon flex-shrink-0" onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
           <div
-            className={`flex-between rounded-lg border border-gray-500 bg-[${backgroundTheme}] px-4 py-1`}
+            className={`flex-between rounded-lg border border-gray-500 bg-[${backgroundTheme}] hidden px-4 py-1 md:inline-flex`}
           >
             <InputBase placeholder="Search..." />
-            <FaSearch className="icon" />
+            <FaSearch className="icon flex-shrink-0" />
           </div>
         </div>
         {/* Right */}

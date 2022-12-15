@@ -28,7 +28,9 @@
     "react-icons": "^4.7.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.5",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "tailwind-scrollbar": "^2.0.1",
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
