@@ -36,6 +36,16 @@ const UserSchema = mongoose.Schema(
       maxLength: [250, 'Bio must not be more than 250 characters'],
       default: 'bio',
     },
+    city: String,
+    state: String,
+    country: String,
+    occupation: String,
+    transactions: Array,
+    role: {
+      type: String,
+      enum: ['user', 'admin', 'superadmin'],
+      default: 'admin',
+    },
   },
   {
     timestamps: true,

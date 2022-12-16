@@ -41,12 +41,13 @@ const register = asyncHandler(async (req, res) => {
   })
 
   if (user) {
-    const { name, email, phone, photo, bio } = user
+    const { name, email, phone, photo, occupation, bio } = user
     res.status(201).json({
       name,
       email,
       phone,
       photo,
+      occupation,
       bio,
       token,
     })
@@ -76,7 +77,7 @@ const login = asyncHandler(async (req, res) => {
     secure: true,
   })
   if (user && validatedPassword) {
-    const { _id, name, email, phone, photo, bio } = user
+    const { _id, name, email, phone, photo, occupation, bio } = user
 
     res.status(200).json({
       _id,
@@ -84,6 +85,7 @@ const login = asyncHandler(async (req, res) => {
       email,
       phone,
       photo,
+      occupation,
       bio,
       token,
     })
@@ -109,13 +111,14 @@ const getUser = asyncHandler(async (req, res) => {
   if (!user) {
     sendError(res, 400, 'User not found')
   }
-  const { _id, name, email, phone, photo, bio } = user
+  const { _id, name, email, phone, occupation, photo, bio } = user
 
   res.status(200).json({
     _id,
     name,
     email,
     phone,
+    occupation,
     photo,
     bio,
   })

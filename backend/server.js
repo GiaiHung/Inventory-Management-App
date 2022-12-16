@@ -11,6 +11,7 @@ const app = express()
 const PORT = process.env.PORT || 5000
 const route = require('./routes')
 const errorHandler = require('./middlewares/errorMiddleware')
+const { dataUser } = require('./data')
 
 // Middleware
 app.use(express.json())

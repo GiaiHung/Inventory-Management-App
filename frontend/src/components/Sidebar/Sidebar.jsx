@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import {
   Box,
-  Divider,
   Drawer,
+  Divider,
   IconButton,
   List,
   ListItem,
@@ -13,14 +13,17 @@ import {
   useTheme,
 } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { FaChevronLeft } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { MdOutlineSettings } from 'react-icons/md'
 import { navItems } from '../../utils/constants'
 
 function Sidebar({ width, isSidebarOpen, isNonMobile, setIsSidebarOpen }) {
   const { pathname } = useLocation()
-  const [sidebarItemActive, setSidebarItemActive] = useState('')
+  const [sidebarItemActive, setSidebarItemActive] = useState('dashboard')
   const theme = useTheme()
   const navigate = useNavigate()
+  const user = useSelector((state) => state.auth.user)
 
   useEffect(() => {
     setSidebarItemActive(pathname.substring(1))
@@ -67,7 +70,10 @@ function Sidebar({ width, isSidebarOpen, isNonMobile, setIsSidebarOpen }) {
               {navItems.map(({ text, icon }) => {
                 if (!icon) {
                   return (
-                    <Typography key={text} sx={{ m: '2.25rem 0 1rem 3rem', fontSize: '16px', fontWeight: 'bold' }}>
+                    <Typography
+                      key={text}
+                      sx={{ m: '2.25rem 0 1rem 3rem', fontSize: '16px', fontWeight: 'bold' }}
+                    >
                       {text}
                     </Typography>
                   )
@@ -104,13 +110,39 @@ function Sidebar({ width, isSidebarOpen, isNonMobile, setIsSidebarOpen }) {
                         {icon}
                       </ListItemIcon>
                       <ListItemText primary={text} />
-                      {sidebarItemActive === lcText && <ChevronRightOutlined sx={{ ml: 'auto' }} />}
+                      {sidebarItemActive === lcText && <FaChevronRight sx={{ ml: 'auto' }} />}
                     </ListItemButton>
                   </ListItem>
                 )
               })}
             </List>
           </Box>
+
+          <Divider />
+          <div className="flex-between py-4">
+            <Box
+              component="img"
+              alt="profile"
+              src={user.photo}
+              height="40px"
+              width="40px"
+              borderRadius="50%"
+              sx={{ objectFit: 'cover' }}
+            />
+            <Box textAlign="left">
+              <Typography
+                fontWeight="bold"
+                fontSize="0.9rem"
+                sx={{ color: theme.palette.secondary[100] }}
+              >
+                {user.name}
+              </Typography>
+              <Typography fontSize="0.8rem" sx={{ color: theme.palette.secondary[200] }}>
+                {user.occupation}
+              </Typography>
+            </Box>
+            <MdOutlineSettings className="icon text-2xl hover:text-white" />
+          </div>
         </Drawer>
       )}
     </Box>

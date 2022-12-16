@@ -12,7 +12,7 @@ import {
 
 const navItems = [
   {
-    text: 'Home',
+    text: 'Dashboard',
     icon: <MdOutlineSpaceDashboard className='text-2xl'/>,
   },
   {

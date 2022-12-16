@@ -23,6 +23,7 @@ const authSlice = createSlice({
       state.user.name = profile.name
       state.user.email = profile.email
       state.user.phone = profile.phone
+      state.user.occupation = profile.occupation
       state.user.bio = profile.bio
       state.user.photo = profile.photo
     },

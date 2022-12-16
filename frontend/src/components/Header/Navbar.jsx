@@ -50,7 +50,7 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
         <div className="flex-between">
           <FaBars className="icon flex-shrink-0" onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
           <div
-            className={`flex-between rounded-lg border border-gray-500 bg-[${backgroundTheme}] hidden px-4 py-1 md:inline-flex`}
+            className={`flex-between rounded-lg border border-gray-500 bg-[${backgroundTheme}] px-4 py-1`}
           >
             <InputBase placeholder="Search..." />
             <FaSearch className="icon flex-shrink-0" />

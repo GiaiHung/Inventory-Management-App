@@ -30,7 +30,8 @@ function App() {
         <Route path="/resetpassword/:resetToken" element={<ResetPassword />} />
         <Route element={<PrivateRoutes />}>
           <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/editProfile" element={<EditProfile />} />
             <Route path="/changePassword" element={<ChangePassword />} />
