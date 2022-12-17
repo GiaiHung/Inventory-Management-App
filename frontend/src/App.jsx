@@ -15,6 +15,7 @@ import EditProfile from './pages/user/EditProfile'
 import ChangePassword from './pages/auth/ChangePassword'
 import ForgotPassword from './pages/auth/ForgotPassword'
 import ResetPassword from './pages/auth/ResetPasword'
+import Products from './pages/products/Products'
 
 function App() {
   const mode = useSelector((state) => state.theme.mode)
@@ -35,6 +36,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/editProfile" element={<EditProfile />} />
             <Route path="/changePassword" element={<ChangePassword />} />
+            <Route path="/products" element={<Products />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
