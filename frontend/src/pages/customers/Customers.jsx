@@ -1,19 +1,23 @@
 import { Box, useTheme } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../../components/Helper/Header'
 import { useGetCustomersQuery } from '../../store/api'
 import { customerColumns } from '../../utils/constants'
+import GridCustomToolbar from '../transactions/GridCustomToolbar'
 
 function Customers() {
-  const { data, isLoading } = useGetCustomersQuery()
+  const [search, setSearch] = useState('')
+  const [searchInput, setSearchInput] = useState('')
   const theme = useTheme()
+
+  const { data, isLoading } = useGetCustomersQuery({ search })
 
   return (
     <Box m="1.5rem">
       <Header title="Customers" subtitle="List of all customers" />
       <Box
-        mt="40px"
+        mt="10px"
         height="75vh"
         sx={{
           '& .MuiDataGrid-root': {
@@ -45,6 +49,7 @@ function Customers() {
           rows={data || []}
           loading={isLoading || !data}
           getRowId={(row) => row._id}
+          components={{ Toolbar: GridCustomToolbar }}
         />
       </Box>
     </Box>

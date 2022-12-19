@@ -11,8 +11,8 @@ function Transactions() {
   const [page, setPage] = useState(0)
   const [pageSize, setPageSize] = useState(20)
   const [search, setSearch] = useState('')
-  const [sort, setSort] = useState({})
   const [searchInput, setSearchInput] = useState('')
+  const [sort, setSort] = useState({})
 
   const { data, isLoading } = useGetTransactionsQuery({
     page,
@@ -59,7 +59,7 @@ function Transactions() {
           getRowId={(row) => row._id}
           rowCount={(data && data.total) || []}
           loading={isLoading || !data}
-          rowsPerPageOptions={[5]}
+          rowsPerPageOptions={[20, 50, 100]}
           pagination
           page={page}
           pageSize={pageSize}
@@ -70,7 +70,7 @@ function Transactions() {
           onSortModelChange={(newSortModel) => setSort(...newSortModel)}
           components={{ Toolbar: GridCustomToolbar }}
           componentsProps={{
-            toolbar: { searchInput, setSearchInput, setSearch },
+            toolbar: { searchInput, showSearch: true, setSearchInput, setSearch },
           }}
         />
       </Box>

@@ -29,18 +29,33 @@ const UserSchema = mongoose.Schema(
     phone: {
       type: String,
       required: [true, 'Please enter your phone number'],
-      default: '1111 222 3333',
+      default: '111122233',
     },
     bio: {
       type: String,
       maxLength: [250, 'Bio must not be more than 250 characters'],
       default: 'bio',
     },
-    city: String,
-    state: String,
-    country: String,
-    occupation: String,
-    transactions: Array,
+    city: {
+      type: String,
+      default: 'Ho Chi Minh City',
+    },
+    state: {
+      type: String,
+      default: 'South',
+    },
+    country: {
+      type: String,
+      default: 'VN',
+    },
+    occupation: {
+      type: String,
+      default: 'Office Worker',
+    },
+    transactions: {
+      type: Array,
+      default: ['63701d74f0323986f3000158', '63701d74f03239d40b00007e'],
+    },
     role: {
       type: String,
       enum: ['user', 'admin', 'superadmin'],
