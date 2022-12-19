@@ -5,11 +5,11 @@ import { useGetSalesQuery } from '../../store/api'
 import Loading from '../Helper/Loading'
 
 function OverviewChart({ isDashboard = false, view }) {
-  const theme = useTheme()
   const { data, isLoading } = useGetSalesQuery()
+  const theme = useTheme()
   const [totalSalesLine, totalUnitsLine] = useMemo(() => {
     if (!data) return []
-
+    
     const { monthlyData } = data
     const totalSalesLine = {
       id: 'totalSales',
@@ -21,7 +21,7 @@ function OverviewChart({ isDashboard = false, view }) {
       color: theme.palette.secondary[600],
       data: [],
     }
-
+    
     monthlyData.reduce(
       (acc, { month, totalSales, totalUnits }) => {
         const currentSales = acc.sales + totalSales
@@ -30,19 +30,19 @@ function OverviewChart({ isDashboard = false, view }) {
         totalSalesLine.data = [...totalSalesLine.data, { x: month, y: currentSales }]
 
         totalUnitsLine.data = [...totalUnitsLine.data, { x: month, y: currentUnits }]
-
+        
         return { sales: currentSales, units: currentUnits }
       },
       {
         sales: 0,
         units: 0,
       }
-    )
+      )
 
-    return [[totalSalesLine], [totalUnitsLine]]
-  }, [data])
-  return (
-    <>
+      return [[totalSalesLine], [totalUnitsLine]]
+    }, [data])
+    return (
+      <>
       {!isLoading && data ? (
         <ResponsiveLine
           data={view === 'sales' ? totalSalesLine : totalUnitsLine}

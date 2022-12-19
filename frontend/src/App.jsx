@@ -5,7 +5,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material'
 import { createTheme } from '@mui/material/styles'
 import { themeSettings } from './theme'
 import Login from './pages/auth/Login'
-import Home from './pages/home/Home'
+import Home from './pages/home'
 import NotFound from './components/Helper/NotFound'
 import PrivateRoutes from './components/Helper/PrivateRoutes'
 import Register from './pages/auth/Register'
@@ -15,11 +15,15 @@ import EditProfile from './pages/user/EditProfile'
 import ChangePassword from './pages/auth/ChangePassword'
 import ForgotPassword from './pages/auth/ForgotPassword'
 import ResetPassword from './pages/auth/ResetPasword'
-import Products from './pages/products/Products'
-import Customers from './pages/customers/Customers'
-import Transactions from './pages/transactions/Transactions'
-import Geography from './pages/geography/Geography'
-import Overview from './pages/overview/Overview'
+import Products from './pages/products'
+import Customers from './pages/customers'
+import Transactions from './pages/transactions'
+import Geography from './pages/geography'
+import Overview from './pages/overview'
+import Daily from './pages/daily'
+import Monthly from './pages/monthly'
+import Breakdown from './pages/breakdown'
+import Admin from './pages/admin'
 
 function App() {
   const mode = useSelector((state) => state.theme.mode)
@@ -45,6 +49,10 @@ function App() {
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/geography" element={<Geography />} />
             <Route path="/overview" element={<Overview />} />
+            <Route path="/daily" element={<Daily />} />
+            <Route path="/monthly" element={<Monthly />} />
+            <Route path="/breakdown" element={<Breakdown />} />
+            <Route path="/admin" element={<Admin />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
