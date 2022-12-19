@@ -19,6 +19,7 @@ import Products from './pages/products/Products'
 import Customers from './pages/customers/Customers'
 import Transactions from './pages/transactions/Transactions'
 import Geography from './pages/geography/Geography'
+import Overview from './pages/overview/Overview'
 
 function App() {
   const mode = useSelector((state) => state.theme.mode)
@@ -43,6 +44,7 @@ function App() {
             <Route path="/customers" element={<Customers />} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/geography" element={<Geography />} />
+            <Route path="/overview" element={<Overview />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
