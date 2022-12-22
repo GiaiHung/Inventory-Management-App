@@ -91,6 +91,7 @@ function OverviewChart({ isDashboard = false, view }) {
           axisTop={null}
           curve="catmullRom"
           axisRight={null}
+          enableArea={isDashboard}
           axisBottom={{
             format: (v) => {
               if (isDashboard) return v.slice(0, 3) // January => Jan
@@ -107,6 +108,7 @@ function OverviewChart({ isDashboard = false, view }) {
           axisLeft={{
             orient: 'left',
             tickSize: 5,
+            tickValues: 5,
             tickPadding: 5,
             tickRotation: 0,
             legend: isDashboard ? '' : `Total ${view === 'sales' ? 'Revenue' : 'Units'}`,

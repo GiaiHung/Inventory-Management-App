@@ -98,10 +98,10 @@ function CategoryPieChart({ isDashboard = false }) {
             anchor: 'bottom',
             direction: 'row',
             justify: false,
-            translateX: 0,
-            translateY: 56,
+            translateX: isDashboard ? 10 : 0,
+            translateY: isDashboard ? 50 : 56,
             itemsSpacing: 0,
-            itemWidth: 100,
+            itemWidth: 85,
             itemHeight: 18,
             itemTextColor: '#999',
             itemDirection: 'left-to-right',
@@ -128,7 +128,7 @@ function CategoryPieChart({ isDashboard = false }) {
         pointerEvents="none"
         sx={{ transform: !isDashboard ? 'translate(-50%, -100%)' : 'translate(-75%, -170%)' }}
       >
-        <Typography variant='h6'>{!isDashboard && `Total: $${data.yearlySalesTotal}`}</Typography>
+        <Typography variant="h6">{!isDashboard && `Total: $${data.yearlySalesTotal}`}</Typography>
       </Box>
     </Box>
   )

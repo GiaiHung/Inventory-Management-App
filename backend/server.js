@@ -11,13 +11,14 @@ const app = express()
 const PORT = process.env.PORT || 5000
 const route = require('./routes')
 const errorHandler = require('./middlewares/errorMiddleware')
-// const OverallStat = require('./models/OverallStat')
+// const User = require('./models/User')
 // const {
 //   dataUser,
 //   dataProduct,
 //   dataProductStat,
 //   dataTransaction,
 //   dataOverallStat,
+//   dataAffiliateStat
 // } = require('./data')
 
 // Middleware
