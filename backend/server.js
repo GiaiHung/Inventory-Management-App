@@ -30,11 +30,7 @@ app.use(helmet())
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }))
 app.use(
   cors({
-    origin: [
-      'http://127.0.0.1:5173',
-      'http://localhost:3000',
-      'https://giaihung-inventory-website.onrender.com',
-    ],
+    origin: ['http://127.0.0.1:5173', 'http://localhost:3000', process.env.FRONTEND_URL],
     credentials: true,
   })
 )
